@@ -23,11 +23,11 @@ class IndexController extends Controller
         /*$userInfo = Db::connection('default')->select('SELECT * FROM zb_member where id = 1178493;');
         return $this->response->success($userInfo);*/
         // redis test
-        $container = ApplicationContext::getContainer();
-
-        $redis = $container->get(\Redis::class);
-        $result = $redis->get('1178493');
-        return $this->response->success($result);
+//        $container = ApplicationContext::getContainer();
+//
+//        $redis = $container->get(\Redis::class);
+//        $result = $redis->get('1178493');
+//        return $this->response->success($result);
         $user = $this->request->input('user', 'Hyperf');
         $method = $this->request->getMethod();
 
