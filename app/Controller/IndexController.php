@@ -28,7 +28,7 @@ class IndexController extends Controller
 //        $redis = $container->get(\Redis::class);
 //        $result = $redis->get('1178493');
 //        return $this->response->success($result);
-        $user = $this->request->input('user', 'Hyperf');
+        $user = $this->request->input('user', 'hello world');
         $method = $this->request->getMethod();
 
         return [
