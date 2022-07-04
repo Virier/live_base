@@ -13,37 +13,30 @@ namespace App\Controller;
 
 use App\Kernel\Http\Response;
 use Hyperf\Contract\StdoutLoggerInterface;
+use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Contract\RequestInterface;
+use Hyperf\HttpServer\Contract\ResponseInterface;
 use Psr\Container\ContainerInterface;
 
 abstract class Controller
 {
-    /**
-     * @var ContainerInterface
-     */
-    protected $container;
+    #[Inject]
+    protected ContainerInterface $container;
 
-    /**
-     * @var Response
-     */
-    protected $response;
+    #[Inject]
+    protected RequestInterface $request;
 
-    /**
-     * @var RequestInterface
-     */
-    protected $request;
+    #[Inject]
+    protected ResponseInterface $response;
 
-    /**
-     * @var StdoutLoggerInterface
-     */
-    protected $logger;
-
+    #[Inject]
+    protected StdoutLoggerInterface $logger;
 
     public function __construct(ContainerInterface $container, StdoutLoggerInterface $logger)
     {
         $this->container = $container;
-        $this->response = $container->get(Response::class);
         $this->request = $container->get(RequestInterface::class);
+        $this->response = $container->get(ResponseInterface::class);
         $this->logger = $logger;
     }
 }
