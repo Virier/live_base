@@ -18,23 +18,12 @@ class IndexController extends Controller
 {
     public function index()
     {
-//        return $this->response->fail(500);
-        // db test
-        /*$userInfo = Db::connection('default')->select('SELECT * FROM zb_member where id = 1178493;');
-        return $this->response->success($userInfo);*/
-        // redis test
-//        $container = ApplicationContext::getContainer();
-//
-//        $redis = $container->get(\Redis::class);
-//        $result = $redis->get('1178493');
-//        return $this->response->success($result);
-        $user = $this->request->input('user', 'hello world');
-        $method = $this->request->getMethod();
-
-        return [
-            'method' => $method,
-            'message' => "Hello {$user}.",
-        ];
+        $uid = $this->request->input('uid',0);
+        $token  = $this->request->input('token','');
+        return $this->response->success([
+            'uid' => $uid,
+            'token' => $token
+        ],'返回成功');
     }
 
 
